@@ -1,4 +1,4 @@
-=Hoarder=
+Hoarder
 =======
 
 A game for CS 179 about collecting objects.
