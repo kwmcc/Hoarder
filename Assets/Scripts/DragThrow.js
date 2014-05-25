@@ -1,4 +1,5 @@
 ﻿var normalCollisionCount = 1;
+var range = 1;
 var spring = 50.0;
 var damper = 5.0;
 var drag = 10.0;
@@ -9,9 +10,12 @@ var throwRange = 1000;
 var attachToCenterOfMass = false;
  
 private var springJoint : SpringJoint;
+private var holding : boolean;
  
 function Update ()
 {
+	//toggle between holding and not
+	
 	// Make sure the user pressed the mouse down
 	if (!Input.GetMouseButtonDown (0))
 		return;
@@ -20,12 +24,15 @@ function Update ()
  
 	// We need to actually hit an object
 	var hit : RaycastHit;
-	if (!Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),  hit, 100))
+	var ray = mainCamera.ScreenPointToRay(new Vector3(mainCamera.pixelWidth/2, mainCamera.pixelHeight/2, 0));
+	//var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+	if (!Physics.Raycast(ray, hit, range))
 		return;
 	// We need to hit a rigidbody that is not kinematic
 	if (!hit.rigidbody || hit.rigidbody.isKinematic)
 		return;
  
+ 	Debug.DrawLine(ray.origin, hit.point, Color.red, 10000, false);
 	if (!springJoint)
 	{
 		var go = new GameObject("Rigidbody dragger");
@@ -63,7 +70,8 @@ function DragObject (distance : float)
 	var mainCamera = FindCamera();
 	while (Input.GetMouseButton (0))
 	{
-		var ray = mainCamera.ScreenPointToRay (Input.mousePosition);
+		//var ray = mainCamera.ScreenPointToRay (Input.mousePosition);
+		var ray = mainCamera.ScreenPointToRay (new Vector3(mainCamera.pixelWidth/2, mainCamera.pixelHeight/2, 0));
 		springJoint.transform.position = ray.GetPoint(distance);
 		yield;
  
