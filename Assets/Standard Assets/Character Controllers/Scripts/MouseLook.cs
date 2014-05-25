@@ -29,9 +29,42 @@ public class MouseLook : MonoBehaviour {
 	public float maximumY = 60F;
 
 	float rotationY = 0F;
+	
+	public Texture2D crosshairTexture;
+	public Texture2D crosshairTextureRed;
+	public Texture2D crosshairTextureGreen;
+	public float crosshairScale = 1;
+
+	void OnGUI()
+	{
+		//if not paused
+		if(Time.timeScale != 0)
+		{
+			if(crosshairTexture!=null) 
+				GUI.DrawTexture(new Rect((Screen.width - crosshairTexture.width) / 2,
+				                         (Screen.height - crosshairTexture.height) /2, crosshairTexture.width*crosshairScale, crosshairTexture.height*crosshairScale),crosshairTexture);
+			else
+				Debug.Log("No crosshair texture set in the Inspector");
+		}
+	}
 
 	void Update ()
 	{
+
+		// Testing to see if objects are within range of throwing
+		RaycastHit hit;
+		Vector3 target = new Vector3 (Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0);
+		Ray ray = Camera.main.ScreenPointToRay(target);
+		Physics.Raycast (ray, out hit, 3);
+		// We need to hit a rigidbody that is not kinematic
+		if (!hit.rigidbody || hit.rigidbody.isKinematic){
+			crosshairTexture = crosshairTextureRed;
+		}else{
+			crosshairTexture = crosshairTextureGreen;
+		}
+
+
+
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;

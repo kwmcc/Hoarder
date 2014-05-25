@@ -8,7 +8,7 @@ var distance = 0.2;
 var throwForce = 500;
 var throwRange = 1000;
 var attachToCenterOfMass = false;
- 
+
 private var springJoint : SpringJoint;
 private var holding : boolean;
  
@@ -27,10 +27,11 @@ function Update ()
 	var ray = mainCamera.ScreenPointToRay(new Vector3(mainCamera.pixelWidth/2, mainCamera.pixelHeight/2, 0));
 	//var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 	if (!Physics.Raycast(ray, hit, range))
-		return;
+	
 	// We need to hit a rigidbody that is not kinematic
 	if (!hit.rigidbody || hit.rigidbody.isKinematic)
 		return;
+		
  
  	Debug.DrawLine(ray.origin, hit.point, Color.red, 10000, false);
 	if (!springJoint)
