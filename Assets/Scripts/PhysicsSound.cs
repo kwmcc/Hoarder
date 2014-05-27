@@ -47,7 +47,8 @@ public class PhysicsSound : MonoBehaviour {
         foreach (ContactPoint contact in collision.contacts) {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
         }
-        Debug.Log("velocity mag = "+collision.relativeVelocity.magnitude);
+        //Debug.Log("velocity mag = "+collision.relativeVelocity.magnitude);
+        // I'll need these debugs as I make the sounds more dynamic later
         
         if (collision.relativeVelocity.magnitude > maxVolume){
             volumePercent = 1.0f;
