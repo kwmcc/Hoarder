@@ -50,17 +50,21 @@ function Start () {
 
 function Update () {
 	//if the player is not seen the NPC will move to waypoints.
-	patrolWaypoints();
+	if(!CanSeePlayer()){
+		patrolWaypoints();
+	}else{
+		chasePlayer();
+	}
 }
  
 function patrolWaypoints () {
- 	if(!CanSeePlayer())
- 	{
+
 	MoveToWaypoint();
-	}
+	
 	
 	if(Vector3.Distance(currentWaypoint.transform.position, transform.position) < minDistance)
 	{
+		Debug.Log("Moving to next Waypoint");
 		currentIndex++;
 		//resests after cycling though all waypoints.
 		if(currentIndex > waypoints.Length - 1)
@@ -71,12 +75,23 @@ function patrolWaypoints () {
 	}
 }
 
+function chasePlayer() {
+	
+	agent.ResetPath();
+	agent.SetDestination(playerObject.transform.position);
+	Debug.Log("Reseting path, moving to player");
+
+
+}
+
 function MoveToWaypoint() : void
 {
 	//var direction : Vector3 = currentWaypoint.transform.position - transform.position;
 	//var moveVector : Vector3 = direction.normalized * moveSpeed * Time.deltaTime;
 	//transform.position += moveVector;
+	
 	agent.SetDestination(currentWaypoint.transform.position);
+	
 	
 	//smoothly rotate towards target
 	//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 4 * Time.deltaTime);
