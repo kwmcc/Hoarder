@@ -7,8 +7,10 @@
 
 //Waypoint array that can be used in the inspector
 var waypoints : Transform[];
+var priorityWaypoint : Transform;
 private var currentWaypoint : Transform;
 private var currentIndex : int;
+
 
 private var agent: NavMeshAgent;
 //NPC Movement
@@ -22,8 +24,8 @@ function Start () {
 	currentIndex = 0;
 }
 
-function Update () {
-	MoveTowardsWaypoint();
+function MoveTowardsWaypoint () {
+	Move();
 	if(Vector3.Distance(currentWaypoint.transform.position, transform.position) < minDistance)
 	{
 		currentIndex++;
@@ -36,7 +38,7 @@ function Update () {
 	}
 }
 
-function MoveTowardsWaypoint() : void
+function Move() : void
 {
 	//var direction : Vector3 = currentWaypoint.transform.position - transform.position;
 	//var moveVector : Vector3 = direction.normalized * moveSpeed * Time.deltaTime;
