@@ -14,13 +14,12 @@ public class PhysicsSound : MonoBehaviour {
     [Range(0, 10)]
     public float maxVolume = 10.0f;
     private float volumePercent;
-    private bool settled = true;
+    //private bool settled = true;
     private AudioClip clip;
-    private AudioSource source;
     
 	// Initialize audiosource and audioclip
 	void Start () {
-        source = (AudioSource) gameObject.AddComponent("AudioSource");
+        gameObject.AddComponent("AudioSource");
         switch(material){
             case PhysicsMaterial.CARDBOARD:
                 clip = (AudioClip) Resources.Load("Audio/Physics/cardboard_box_impact_hard2", typeof(AudioClip));

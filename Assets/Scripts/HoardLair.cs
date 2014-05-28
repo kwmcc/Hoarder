@@ -7,12 +7,9 @@ public class HoardLair : MonoBehaviour {
     private Dictionary<string,Valuable> _hoardedItems;
     // current value total
     private float _totalValue = 0.0f;
-    // total items hoarded
-    private int _totalItems = 0;
 
 	// Use this for initialization
 	void Start () {
-        //_hoardedItems = new List<Valuable>();
         _hoardedItems = new Dictionary<string,Valuable>();
 	}
 	
@@ -27,7 +24,6 @@ public class HoardLair : MonoBehaviour {
             //_hoardedItems.Add(valuableComponent);
             _hoardedItems[valuableComponent.getName()] = valuableComponent;
             _totalValue += valuableComponent.getValue();
-            _totalItems = _hoardedItems.Count;
             Debug.Log("Current Hoard value = " + _totalValue);
         }   
     }
@@ -38,7 +34,6 @@ public class HoardLair : MonoBehaviour {
             //_hoardedItems.Add(valuableComponent);
             _hoardedItems.Remove(valuableComponent.getName());
             _totalValue -= valuableComponent.getValue();
-            _totalItems = _hoardedItems.Count;
             Debug.Log("Current Hoard value = " + _totalValue);
         } 
         Debug.Log("Current Hoard value = " + _totalValue);

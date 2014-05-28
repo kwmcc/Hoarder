@@ -34,6 +34,8 @@ public class MouseLook : MonoBehaviour {
 	public Texture2D crosshairTextureRed;
 	public Texture2D crosshairTextureGreen;
 	public float crosshairScale = 1;
+    
+    private bool mouseLocked = false;
 
 	void OnGUI()
 	{
@@ -50,41 +52,42 @@ public class MouseLook : MonoBehaviour {
 
 	void Update ()
 	{
+        if(Time.timeScale != 0){
+            // Testing to see if objects are within range of throwing
+            RaycastHit hit;
+            Vector3 target = new Vector3 (Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0);
+            Ray ray = Camera.main.ScreenPointToRay(target);
+            Physics.Raycast (ray, out hit, 3);
+            // We need to hit a rigidbody that is not kinematic
+            if (!hit.rigidbody || hit.rigidbody.isKinematic){
+                crosshairTexture = crosshairTextureRed;
+            }else{
+                crosshairTexture = crosshairTextureGreen;
+            }
 
-		// Testing to see if objects are within range of throwing
-		RaycastHit hit;
-		Vector3 target = new Vector3 (Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0);
-		Ray ray = Camera.main.ScreenPointToRay(target);
-		Physics.Raycast (ray, out hit, 3);
-		// We need to hit a rigidbody that is not kinematic
-		if (!hit.rigidbody || hit.rigidbody.isKinematic){
-			crosshairTexture = crosshairTextureRed;
-		}else{
-			crosshairTexture = crosshairTextureGreen;
-		}
 
 
-
-		if (axes == RotationAxes.MouseXAndY)
-		{
-			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
-			
-			rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
-			
-			transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
-		}
-		else if (axes == RotationAxes.MouseX)
-		{
-			transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
-		}
-		else
-		{
-			rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
-			
-			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
-		}
+            if (axes == RotationAxes.MouseXAndY)
+            {
+                float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
+                
+                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+                
+                transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+            }
+            else if (axes == RotationAxes.MouseX)
+            {
+                transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+            }
+            else
+            {
+                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+                
+                transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+            }
+        }
 	}
 	
 	void Start ()
