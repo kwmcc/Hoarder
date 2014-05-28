@@ -47,4 +47,15 @@ function CanSeePlayer() : boolean
 			}
 		}
 	}
+	//if nothing is found
+	return false;
+}
+
+function OnDrawGizmosSelected ()
+{
+// Draws a line in front of the player and one behind this is used to visually illustrate the detection ranges in front and behind the enemy
+Gizmos.color = Color.magenta; // the color used to detect the player in front
+Gizmos.DrawRay (transform.position, transform.forward * rayRange);
+Gizmos.color = Color.yellow; // the color used to detect the player from behind
+Gizmos.DrawRay (transform.position, transform.forward * -minPlayerDetectDistance);
 }
