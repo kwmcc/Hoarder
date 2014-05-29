@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameState : MonoBehaviour {
     [Range (1, 10)]
@@ -9,6 +10,9 @@ public class GameState : MonoBehaviour {
     public bool devMode = false;
     public GUIStyle timeStyle;
     public GUIStyle menuStyle;
+    public GUIStyle scoreStyle;
+    public GUIStyle scoreTallyStyle;
+    public GUIStyle itemStyle;
     public float buttonHeight = 60;
     public float buttonWidth = 84;
     
@@ -16,6 +20,7 @@ public class GameState : MonoBehaviour {
     private float gameTime;
     private string minutes;
     private string seconds;
+    private string scoreText;
     
     private bool colorSet = false;
     private bool timePaused = false;
@@ -23,6 +28,8 @@ public class GameState : MonoBehaviour {
     private bool gameOver = false;
 
     private static CharacterController _characterControllor;
+    private static HoardLair _hoardLair;
+    private Dictionary<string,Valuable> _hoardedItems;
     
     private static GameState _sInstance;
     public static GameState sInstance {
@@ -30,6 +37,7 @@ public class GameState : MonoBehaviour {
             if (_sInstance == null) {
                 _sInstance = (GameState)FindObjectOfType(typeof(GameState));
                 _characterControllor = (CharacterController)FindObjectOfType(typeof(CharacterController));
+                _hoardLair = (HoardLair) FindObjectOfType(typeof(HoardLair));
             }
             return _sInstance;
         }
@@ -51,9 +59,10 @@ public class GameState : MonoBehaviour {
  	
         int minutes = Mathf.FloorToInt(gameTime/60);
         string minutesString = minutes.ToString("00");
-        seconds = Mathf.FloorToInt(gameTime - minutes*60).ToString("00");;
-            GUI.Label (new Rect (10, 10, 200, 40), "Time: " + minutesString + ":"+ seconds, timeStyle);
-            
+        seconds = Mathf.FloorToInt(gameTime - minutes*60).ToString("00");
+        GUI.Label (new Rect (Screen.width, 10, 200, 40), "Time: " + minutesString + ":"+ seconds, timeStyle);
+        scoreText = _hoardLair.getTotal().ToString();
+        GUI.Label (new Rect (10, 10, 200, 40), "Hoard Value: $ " + string.Format("{0:#,###0}", _hoardLair.getTotal()), scoreStyle);    
         if (pauseGame){
             pauseMenu();
         }
@@ -81,6 +90,7 @@ public class GameState : MonoBehaviour {
                 _characterControllor.enabled = !_characterControllor.enabled;
                 Time.timeScale = (Time.timeScale + 1) % 2;
                 Debug.Log("game over called");
+                _hoardedItems = _hoardLair.getValuables();
                 endMenu();
             }
         }
@@ -112,12 +122,31 @@ public class GameState : MonoBehaviour {
         
         GUI.Label(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2 - (buttonWidth / 2),(Screen.height - 2 * (Screen.height / 3) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            new Rect(Screen.width / 2 - (buttonWidth / 2),(Screen.height - 7 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
             "Time's Up!", menuStyle);
+        GUI.Label(
+            // Center in X, 2/3 of the height in Y
+            new Rect(Screen.width - Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            "Hoard Value: $ " + string.Format("{0:#,###0}", _hoardLair.getTotal()), scoreTallyStyle);
+            
+            
+        //for (int index = 0; index < _hoardedItems.Count; index++) {
+        int index = 1;
+        foreach ( string key in _hoardedItems.Keys) {
+          //var item = dictionary.ElementAt(index);
+          //var itemKey = item.Key;
+          Valuable item = _hoardedItems[key];
+          GUI.Label(
+            // Center in X, 2/3 of the height in Y
+            new Rect(Screen.width - Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) + 50 * index) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            item.getName() +" - $ " + string.Format("{0:#,###0}",  item.getValue()), itemStyle);
+          Debug.Log("item");
+          index++;
+        }
         
         if (GUI.Button(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2 - (buttonWidth / 2) + 200,(2 * Screen.height / 3) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            new Rect(Screen.width / 2 - (buttonWidth / 2) + 200, Screen.height - 6 * (Screen.height / 8) - (buttonHeight / 2),buttonWidth,buttonHeight),
             "Try Again", menuStyle))
         {
             pauseGame = false;
@@ -130,7 +159,7 @@ public class GameState : MonoBehaviour {
             Application.LoadLevel(Application.loadedLevel);
         } else if ( GUI.Button(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2 - (buttonWidth / 2) + - 200,(2 * Screen.height / 3) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            new Rect(Screen.width / 2 - (buttonWidth / 2) + - 200,Screen.height - 6 * (Screen.height / 8) - (buttonHeight / 2),buttonWidth,buttonHeight),
             "Main Menu", menuStyle))
         {
             // On Click, load the main menu.
