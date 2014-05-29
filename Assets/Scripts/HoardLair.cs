@@ -21,20 +21,22 @@ public class HoardLair : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if(other.GetComponent<Valuable>() != null){
             Valuable valuableComponent = other.GetComponent<Valuable>();
-            //_hoardedItems.Add(valuableComponent);
-            _hoardedItems[valuableComponent.getName()] = valuableComponent;
-            _totalValue += valuableComponent.getValue();
-            Debug.Log("Current Hoard value = " + _totalValue);
+            if(!_hoardedItems.ContainsKey(valuableComponent.getName())){
+                _hoardedItems[valuableComponent.getName()] = valuableComponent;
+                _totalValue += valuableComponent.getValue();
+                Debug.Log("Current Hoard value = " + _totalValue);
+            }
         }   
     }
     
     void OnTriggerExit(Collider other) {
         if(other.GetComponent<Valuable>() != null){
             Valuable valuableComponent = other.GetComponent<Valuable>();
-            //_hoardedItems.Add(valuableComponent);
-            _hoardedItems.Remove(valuableComponent.getName());
-            _totalValue -= valuableComponent.getValue();
-            Debug.Log("Current Hoard value = " + _totalValue);
+            if(_hoardedItems.ContainsKey(valuableComponent.getName())){
+                _hoardedItems.Remove(valuableComponent.getName());
+                _totalValue -= valuableComponent.getValue();
+                Debug.Log("Current Hoard value = " + _totalValue);
+            }
         } 
     }
     
