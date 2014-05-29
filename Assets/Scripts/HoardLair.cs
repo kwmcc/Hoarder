@@ -36,7 +36,6 @@ public class HoardLair : MonoBehaviour {
             _totalValue -= valuableComponent.getValue();
             Debug.Log("Current Hoard value = " + _totalValue);
         } 
-        Debug.Log("Current Hoard value = " + _totalValue);
     }
     
     public float getTotal(){
