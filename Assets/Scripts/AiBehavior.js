@@ -64,6 +64,7 @@ function patrolWaypoints () {
 	
 	if(Vector3.Distance(currentWaypoint.transform.position, transform.position) < minDistance)
 	{
+		yield WaitForSeconds(5);
 		Debug.Log("Moving to next Waypoint");
 		currentIndex++;
 		//resests after cycling though all waypoints.
