@@ -18,6 +18,7 @@
 //for raycasting and player detection
 //
 var playerObject : GameObject; //player
+var patrolPause : float; 
 var fovRange : float; //Feild of View Ranger
 var minPlayerDetectDistance : float; //how close can the player get
 var rayRange : float; // distance in front.
@@ -64,7 +65,7 @@ function patrolWaypoints () {
 	
 	if(Vector3.Distance(currentWaypoint.transform.position, transform.position) < minDistance)
 	{
-		yield WaitForSeconds(5);
+		yield WaitForSeconds(patrolPause);
 		Debug.Log("Moving to next Waypoint");
 		currentIndex++;
 		//resests after cycling though all waypoints.
@@ -77,10 +78,19 @@ function patrolWaypoints () {
 }
 
 function chasePlayer() {
-	
-	agent.ResetPath();
+	//commented out reset so it will continue its previous path
+	//agent.ResetPath();
+	var lastLocation;
 	agent.SetDestination(playerObject.transform.position);
-	Debug.Log("Reseting path, moving to player");
+	
+	//if the player goes out of sight then the NPC will move to the players last known location.
+	if(CanSeePlayer() == false)
+	{
+		Debug.Log("Out of Sight, moving to last location");
+		lastLocation = playerObject.transform.position;
+		agent.SetDestination(lastLocation);	
+	}
+	//Debug.Log("Reseting path, moving to player");
 
 
 }
