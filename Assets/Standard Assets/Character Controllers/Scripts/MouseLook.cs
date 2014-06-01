@@ -36,6 +36,8 @@ public class MouseLook : MonoBehaviour {
 	public float crosshairScale = 1;
     
     private bool mouseLocked = false;
+    private Valuable _hoverObjectValuable;
+    private GameObject _lastHoverObject;
 
 	void OnGUI()
 	{
@@ -61,8 +63,21 @@ public class MouseLook : MonoBehaviour {
             // We need to hit a rigidbody that is not kinematic
             if (!hit.rigidbody || hit.rigidbody.isKinematic){
                 crosshairTexture = crosshairTextureRed;
+                if(_hoverObjectValuable != null){
+                    _hoverObjectValuable.highlightItem(false);
+                    _hoverObjectValuable = null;
+                }
             }else{
                 crosshairTexture = crosshairTextureGreen;
+                GameObject _hoverObject = hit.collider.gameObject;
+                if(_hoverObjectValuable != null && _hoverObject != _lastHoverObject ){
+                    _hoverObjectValuable.highlightItem(false);
+                    _hoverObjectValuable = null;
+                }
+                if(_hoverObjectValuable = hit.collider.gameObject.GetComponent<Valuable>()){
+                    _lastHoverObject = hit.collider.gameObject;
+                    _hoverObjectValuable.highlightItem(true);
+                }
             }
 
 
