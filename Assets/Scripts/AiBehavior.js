@@ -7,14 +7,6 @@
 //AI scripts to make NPC bahavior.
 
 //
-//this decales the MoveToWAypoint script	
-//
-//var patrol : MoveToWaypoint;
-//patrol = gameObject.GetComponent(MoveToWaypoint);
-//var search : CanSeePlayer;
-//search = gameObject.GetComponent(CanSeePlayer);	
-
-//
 //for raycasting and player detection
 //
 var playerObject : GameObject; //player
