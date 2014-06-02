@@ -10,6 +10,7 @@ public class captured : MonoBehaviour {
 		{
 			//Destroy(col.gameObject);
 			Debug.Log("PLAYER CAPTURED!!");
+			GameState._sInstance.setGameOver(true);
 		}
 	}
 }
