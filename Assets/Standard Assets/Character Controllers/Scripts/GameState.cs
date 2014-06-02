@@ -28,6 +28,7 @@ public class GameState : MonoBehaviour {
     private bool timePaused = false;
     private bool pauseGame = false;
     private bool gameOver = false;
+    private bool _caught = false;
     
 
     private static CharacterController _characterControllor;
@@ -52,6 +53,15 @@ public class GameState : MonoBehaviour {
             Destroy(this);
         }
         gameTime = timeLimit * 60.0f;
+        scoreTallyStyle.alignment = TextAnchor.MiddleCenter;
+        pauseGame = false;
+        gameOver = false;
+        _caught = false;
+        _characterControllor.enabled = true;
+        timePaused = false;
+        menuUp = false;
+        Time.timeScale = 1;
+        
     }
     
     public void OnGUI(){
@@ -75,7 +85,7 @@ public class GameState : MonoBehaviour {
     }
     
     void Update(){
-        if(gameTime > 0 || devMode){
+        if(gameTime > 0 && !gameOver || devMode ){
             gameTime -= Time.deltaTime;
             
             if (pauseGame)
@@ -89,13 +99,15 @@ public class GameState : MonoBehaviour {
             gameTime = 0.0f;
             if(!gameOver){
                 gameOver = true;
-                Screen.lockCursor = false;
-                _characterControllor.enabled = !_characterControllor.enabled;
-                Time.timeScale = (Time.timeScale + 1) % 2;
-                Debug.Log("game over called");
-                _hoardedItems = _hoardLair.getValuables();
-                endMenu();
             }
+        }
+        if(gameOver && !menuUp){
+            Screen.lockCursor = false;
+            _characterControllor.enabled = false;
+            Time.timeScale = 0;
+            _hoardedItems = _hoardLair.getValuables();
+            menuUp = true;
+            endMenu();
         }
     }
     
@@ -122,14 +134,15 @@ public class GameState : MonoBehaviour {
  	
     }
     public void endMenu(){
+        string gameOverText = _caught? "You've been caught!": "Time's Up!";
         
         GUI.Label(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2 - (buttonWidth / 2),(Screen.height - 7 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
-            "Time's Up!", menuStyle);
+            new Rect(Screen.width / 2,(Screen.height - 7 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            gameOverText, scoreTallyStyle);
         GUI.Label(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width - Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            new Rect(Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
             "Hoard Value: $ " + string.Format("{0:#,###0}", _hoardLair.getTotal()), scoreTallyStyle);
             
             
@@ -143,7 +156,6 @@ public class GameState : MonoBehaviour {
             // Center in X, 2/3 of the height in Y
             new Rect(Screen.width - Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) + 50 * index) - (buttonHeight / 2),buttonWidth,buttonHeight),
             item.getName() +" - $ " + string.Format("{0:#,###0}",  item.getValue()), itemStyle);
-          Debug.Log("item");
           index++;
         }
         
@@ -154,10 +166,9 @@ public class GameState : MonoBehaviour {
         {
             pauseGame = false;
             gameOver = false;
-            gameOver = true;
-            _characterControllor.enabled = !_characterControllor.enabled;
-            timePaused = !timePaused;
-            Time.timeScale = (Time.timeScale + 1) % 2;
+            _characterControllor.enabled = true;
+            timePaused = false;
+            Time.timeScale = 1;
             // On Click, restart the game
             Application.LoadLevel(Application.loadedLevel);
         } else if ( GUI.Button(
@@ -179,5 +190,9 @@ public class GameState : MonoBehaviour {
         timePaused = !timePaused;
         Time.timeScale = (Time.timeScale + 1) % 2;
         
+    }
+    public void setGameOver(bool caught){
+        gameOver = true;
+        _caught = caught;
     }
 }

@@ -24,7 +24,7 @@ public class HoardLair : MonoBehaviour {
             if(!_hoardedItems.ContainsKey(valuableComponent.getName())){
                 _hoardedItems[valuableComponent.getName()] = valuableComponent;
                 _totalValue += valuableComponent.getValue();
-                Debug.Log("Current Hoard value = " + _totalValue);
+                //Debug.Log("Current Hoard value = " + _totalValue);
             }
         }   
     }
@@ -35,7 +35,7 @@ public class HoardLair : MonoBehaviour {
             if(_hoardedItems.ContainsKey(valuableComponent.getName())){
                 _hoardedItems.Remove(valuableComponent.getName());
                 _totalValue -= valuableComponent.getValue();
-                Debug.Log("Current Hoard value = " + _totalValue);
+                //Debug.Log("Current Hoard value = " + _totalValue);
             }
         } 
     }
