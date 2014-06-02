@@ -18,6 +18,7 @@ public class DragThrow : MonoBehaviour {
 	
 	private SpringJoint springJoint;
 	private bool  holding;
+    private Valuable _hoverObjectValuable;
 	
 	void  Update (){
 		//toggle between holding and not
@@ -45,6 +46,10 @@ public class DragThrow : MonoBehaviour {
 			body.isKinematic = true;
 		}
 		
+        if(_hoverObjectValuable = hit.collider.gameObject.GetComponent<Valuable>()){
+            _hoverObjectValuable.setGrab(true);
+        }
+        
 		springJoint.transform.position = hit.point;
 		if (attachToCenterOfMass)
 		{
@@ -89,6 +94,8 @@ public class DragThrow : MonoBehaviour {
 			springJoint.connectedBody.drag = oldDrag;
 			springJoint.connectedBody.angularDrag = oldAngularDrag;
 			springJoint.connectedBody = null;
+            _hoverObjectValuable.setGrab(false);
+            _hoverObjectValuable = null;
 		}
 	}
 	
