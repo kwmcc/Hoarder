@@ -16,6 +16,8 @@ public class GameState : MonoBehaviour {
     public float buttonHeight = 60;
     public float buttonWidth = 84;
     
+    public bool menuUp = false;
+    
     
     private float gameTime;
     private string minutes;
@@ -26,12 +28,13 @@ public class GameState : MonoBehaviour {
     private bool timePaused = false;
     private bool pauseGame = false;
     private bool gameOver = false;
+    
 
     private static CharacterController _characterControllor;
     private static HoardLair _hoardLair;
     private Dictionary<string,Valuable> _hoardedItems;
     
-    private static GameState _sInstance;
+    public static GameState _sInstance;
     public static GameState sInstance {
         get {
             if (_sInstance == null) {
@@ -175,5 +178,6 @@ public class GameState : MonoBehaviour {
         pauseGame = !pauseGame;
         timePaused = !timePaused;
         Time.timeScale = (Time.timeScale + 1) % 2;
+        
     }
 }
