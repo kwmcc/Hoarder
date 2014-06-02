@@ -13,6 +13,8 @@ var playerObject : GameObject; //player
 var patrolPause : float; //how long the NPC will wait when it reaches a waypoint
 //var persuitModivation : float; //this is the amount of time that the NPC will chase the player.
 var persuitRange: float; //how far away before the NPC will give up the search
+var persuitSpeed: float = 4;
+var normalSpeed: float = 2;
 var fovRange : float; //Feild of View Ranger
 var minPlayerDetectDistance : float; //how close can the player get
 var rayRange : float; // distance in front.
@@ -51,7 +53,7 @@ function Update () {
 	}
 	else if(CanSeePlayer())
 	{ //triggered when the player is spotted
-		
+		agent.speed = persuitSpeed;
 		playerSpotted = true;
 		//while the player is within a distance of the NPC
 		chasePlayer();
@@ -64,6 +66,7 @@ function Update () {
 	}
 	else
 	{
+		agent.speed = normalSpeed;
 		Debug.Log("Player lost.");
 		playerSpotted = false;
 	}
