@@ -161,6 +161,8 @@ function CanSeePlayer() : boolean
 	return false;
 }
 
+
+
 //
 //Some Debuging stuff that lets you see the extent of the raycasting
 //
