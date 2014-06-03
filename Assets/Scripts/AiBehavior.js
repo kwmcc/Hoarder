@@ -21,7 +21,7 @@ var rayRange : float; // distance in front.
 private var rayDirection = Vector3.zero;
 private var timer : float = 0;
 private var playerSpotted : boolean = false;
-
+var anim : Animator;
 //
 //Waypoint array that can be used in the inspector
 //
@@ -41,13 +41,16 @@ function Start () {
 	agent = GetComponent.<NavMeshAgent>();
 	currentWaypoint = waypoints[0];
 	currentIndex = 0;
+	anim = GetComponent(Animator);
 }
 
 function Update () {
+
 	var distToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
 	//if the player is not seen the NPC will move to waypoints.
 	if(!CanSeePlayer() && playerSpotted == false)
 	{
+		
 		patrolWaypoints();
 		
 	}
@@ -83,7 +86,9 @@ function patrolWaypoints () {
 	
 	if(Vector3.Distance(currentWaypoint.transform.position, transform.position) < minDistance)
 	{
+		anim.SetBool("Walking", false);
 		yield WaitForSeconds(patrolPause);
+		anim.SetBool("Walking", true);
 		Debug.Log("Moving to next Waypoint");
 		currentIndex++;
 		//resests after cycling though all waypoints.
