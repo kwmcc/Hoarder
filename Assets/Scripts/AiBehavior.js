@@ -5,6 +5,7 @@
 //
 //Aibehavior.js this script will intigrate the CanSeePlayer.js, MoveToWaypoint, and ChasePlayer
 //AI scripts to make NPC bahavior.
+//
 
 //
 //for raycasting and player detection
