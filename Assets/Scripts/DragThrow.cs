@@ -19,7 +19,12 @@ public class DragThrow : MonoBehaviour {
 	private SpringJoint springJoint;
 	private bool  holding;
     private Valuable _hoverObjectValuable;
+	private GameObject player;
 	
+	void Start () {
+		player = GameObject.Find("First Person Controller");
+	}
+
 	void  Update (){
 		//toggle between holding and not
 		
@@ -80,6 +85,7 @@ public class DragThrow : MonoBehaviour {
 		{
 			Ray ray= mainCamera.ScreenPointToRay (new Vector3(mainCamera.pixelWidth/2, mainCamera.pixelHeight/2, 0));
 			springJoint.transform.position = ray.GetPoint(distance);
+			springJoint.transform.rotation = player.transform.rotation;
 			yield return 0;
 			
 			if (Input.GetMouseButton (1)){
