@@ -179,7 +179,7 @@ public class GameState : MonoBehaviour {
             // On Click, load the main menu.
             timePaused = false;
             pauseGame = false;
-            Application.LoadLevel("mainMenu");
+            Application.LoadLevel("MainMenu");
             Time.timeScale = 1;
         }
  	
