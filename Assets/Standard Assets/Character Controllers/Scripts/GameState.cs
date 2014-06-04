@@ -126,10 +126,12 @@ public class GameState : MonoBehaviour {
             "Main Menu", menuStyle))
         {
             // On Click, load the main menu.
-            timePaused = false;
             pauseGame = false;
-            //Application.LoadLevel("mainMenu");
+            gameOver = false;
+            _characterControllor.enabled = true;
+            timePaused = false;
             Time.timeScale = 1;
+            Application.LoadLevel("mainMenu");
         }
  	
     }
@@ -145,8 +147,6 @@ public class GameState : MonoBehaviour {
             new Rect(Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
             "Hoard Value: $ " + string.Format("{0:#,###0}", _hoardLair.getTotal()), scoreTallyStyle);
             
-            
-        //for (int index = 0; index < _hoardedItems.Count; index++) {
         int index = 1;
         foreach ( string key in _hoardedItems.Keys) {
           //var item = dictionary.ElementAt(index);
@@ -177,10 +177,13 @@ public class GameState : MonoBehaviour {
             "Main Menu", menuStyle))
         {
             // On Click, load the main menu.
-            timePaused = false;
             pauseGame = false;
-            Application.LoadLevel("MainMenu");
+            gameOver = false;
+            _characterControllor.enabled = true;
+            timePaused = false;
             Time.timeScale = 1;
+            Application.LoadLevel("MainMenu");
+            
         }
  	
     }    
