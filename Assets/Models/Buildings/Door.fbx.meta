@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3d97408d41b748489f1635c235dd953
+guid: d3b45102e2340f5499cbbe0d4c1e17e0
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,8 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane_001
-    4300002: House
+    4300000: Door
     7400000: Default Take
     9500000: //RootNode
   materials:
