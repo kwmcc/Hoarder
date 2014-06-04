@@ -12,7 +12,6 @@ function Awake () {
     sfxSource = gameObject.AddComponent(AudioSource);
     sfxSource.volume = 0.7f;
     sfxSource.priority = 255;
-    //sfxSource.loop = true;
     confirmPing = Resources.Load("Audio/Confirm") as AudioClip;
     alertPing = Resources.Load("Audio/EnemyActivated") as AudioClip;
     listener = FindObjectOfType(AudioListener);
