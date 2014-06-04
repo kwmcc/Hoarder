@@ -7,10 +7,13 @@ public class HoardLair : MonoBehaviour {
     private Dictionary<string,Valuable> _hoardedItems;
     // current value total
     private float _totalValue = 0.0f;
+    private AudioClip clip;
 
 	// Use this for initialization
 	void Start () {
         _hoardedItems = new Dictionary<string,Valuable>();
+        gameObject.AddComponent("AudioSource");
+        clip = (AudioClip) Resources.Load("Audio/cashMoney", typeof(AudioClip));
 	}
 	
 	// Update is called once per frame
@@ -24,6 +27,7 @@ public class HoardLair : MonoBehaviour {
             if(!_hoardedItems.ContainsKey(valuableComponent.getName())){
                 _hoardedItems[valuableComponent.getName()] = valuableComponent;
                 _totalValue += valuableComponent.getValue();
+                audio.PlayOneShot(clip, 0.7f);
                 //Debug.Log("Current Hoard value = " + _totalValue);
             }
         }   

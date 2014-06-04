@@ -34,7 +34,7 @@ private var agent: NavMeshAgent;
 //NPC Movement
 //var moveSpeed : float = 10.0;
 var minDistance : float = 2.0;
-
+var sfxObject : GameObject;
 
 function Start () {
 	var curTransform : Transform;		
@@ -43,6 +43,17 @@ function Start () {
 	currentWaypoint = waypoints[0];
 	currentIndex = 0;
 	anim = GetComponent(Animator);
+}
+
+function Awake (){
+    if(GameObject.Find("SFXManager") == null){
+        sfxObject = new GameObject();
+        sfxObject.name = "SFXManager";
+        sfxObject.AddComponent(SFXManager);
+    }else{
+        sfxObject = GameObject.Find("SFXManager");
+    }
+        
 }
 
 function Update () {
@@ -59,6 +70,7 @@ function Update () {
 	{ //triggered when the player is spotted
 		agent.speed = persuitSpeed;
 		playerSpotted = true;
+        sfxObject.GetComponent(SFXManager).PlayAlert();
 		//while the player is within a distance of the NPC
 		chasePlayer();
 		Debug.Log("Chasing the Player");
