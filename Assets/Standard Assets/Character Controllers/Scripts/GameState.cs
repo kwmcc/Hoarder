@@ -30,10 +30,11 @@ public class GameState : MonoBehaviour {
     private bool gameOver = false;
     private bool _caught = false;
     
-
     private static CharacterController _characterControllor;
     private static HoardLair _hoardLair;
     private Dictionary<string,Valuable> _hoardedItems;
+    
+    //private SFXManager sfx;
     
     public static GameState _sInstance;
     public static GameState sInstance {
@@ -52,6 +53,8 @@ public class GameState : MonoBehaviour {
             Debug.LogWarning("There were multiple instances of " + GetType() + ", please fix that.");
             Destroy(this);
         }
+        //sfx = (SFXManager) gameObject.GetComponent("callee");
+        //sfx = GameObject.Find("SFXManager").GetComponent("SFXManager");
         gameTime = timeLimit * 60.0f;
         scoreTallyStyle.alignment = TextAnchor.MiddleCenter;
         pauseGame = false;
@@ -61,7 +64,6 @@ public class GameState : MonoBehaviour {
         timePaused = false;
         menuUp = false;
         Time.timeScale = 1;
-        
     }
     
     public void OnGUI(){
@@ -119,6 +121,7 @@ public class GameState : MonoBehaviour {
             "Resume", menuStyle))
         {
             // On Click, resume the game
+            //audio.PlayOneShot(menuSound, 0.7F);
             togglePause();
         } else if ( GUI.Button(
             // Center in X, 2/3 of the height in Y
@@ -131,6 +134,7 @@ public class GameState : MonoBehaviour {
             _characterControllor.enabled = true;
             timePaused = false;
             Time.timeScale = 1;
+            //audio.PlayOneShot(menuSound, 0.7F);
             Application.LoadLevel("mainMenu");
         }
  	
@@ -169,6 +173,7 @@ public class GameState : MonoBehaviour {
             _characterControllor.enabled = true;
             timePaused = false;
             Time.timeScale = 1;
+            //audio.PlayOneShot(menuSound, 0.7F);
             // On Click, restart the game
             Application.LoadLevel(Application.loadedLevel);
         } else if ( GUI.Button(
@@ -182,6 +187,7 @@ public class GameState : MonoBehaviour {
             _characterControllor.enabled = true;
             timePaused = false;
             Time.timeScale = 1;
+            //audio.PlayOneShot(menuSound, 0.7F);
             Application.LoadLevel("MainMenu");
             
         }

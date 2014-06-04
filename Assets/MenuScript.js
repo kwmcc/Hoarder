@@ -16,7 +16,7 @@ function Awake (){
     if(GameObject.Find("SFXManager") == null){
         sfxObject = new GameObject();
         sfxObject.name = "SFXManager";
-        //sfxObject.AddComponent(SFXManager);
+        sfxObject.AddComponent(SFXManager);
     }else{
         sfxObject = GameObject.Find("SFXManager");
     }
@@ -45,7 +45,7 @@ function OnGUI()
 		{
 			// On Click, load the first level.
 			// "Stage1" is the name of the first scene we created.
-            
+            sfxObject.GetComponent(SFXManager).PlayConfirm();
 			Application.LoadLevel(loadLevel[i]);
 		}
 
