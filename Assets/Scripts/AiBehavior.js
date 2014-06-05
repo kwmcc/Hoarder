@@ -35,7 +35,9 @@ private var agent: NavMeshAgent;
 //var moveSpeed : float = 10.0;
 var minDistance : float = 2.0;
 var sfxObject : GameObject;
+var robotSound : AudioClip;
 
+@script RequireComponent(AudioSource)
 function Start () {
 	var curTransform : Transform;		
 	curTransform = gameObject.GetComponent(Transform);
@@ -53,7 +55,14 @@ function Awake (){
     }else{
         sfxObject = GameObject.Find("SFXManager");
     }
-        
+    gameObject.AddComponent(AudioSource);
+    robotSound = Resources.Load("Audio/EnemySound") as AudioClip;
+    audio.loop = true;
+    audio.clip = robotSound;
+    audio.volume = 0.1f;
+    audio.maxDistance = 25.0f;
+    audio.rolloffMode = AudioRolloffMode.Custom;
+    audio.Play();
 }
 
 function Update () {
