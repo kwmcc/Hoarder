@@ -34,7 +34,7 @@ public class GameState : MonoBehaviour {
     private static HoardLair _hoardLair;
     private Dictionary<string,Valuable> _hoardedItems;
     
-    //private SFXManager sfx;
+    private SFXManager sfx;
     
     public static GameState _sInstance;
     public static GameState sInstance {
@@ -53,8 +53,7 @@ public class GameState : MonoBehaviour {
             Debug.LogWarning("There were multiple instances of " + GetType() + ", please fix that.");
             Destroy(this);
         }
-        //sfx = (SFXManager) gameObject.GetComponent("callee");
-        //sfx = GameObject.Find("SFXManager").GetComponent("SFXManager");
+        sfx = GameObject.Find("SFXManager").GetComponent<SFXManager>();
         gameTime = timeLimit * 60.0f;
         scoreTallyStyle.alignment = TextAnchor.MiddleCenter;
         pauseGame = false;
@@ -122,6 +121,7 @@ public class GameState : MonoBehaviour {
         {
             // On Click, resume the game
             //audio.PlayOneShot(menuSound, 0.7F);
+            sfx.PlayConfirm();
             togglePause();
         } else if ( GUI.Button(
             // Center in X, 2/3 of the height in Y
@@ -135,6 +135,7 @@ public class GameState : MonoBehaviour {
             timePaused = false;
             Time.timeScale = 1;
             //audio.PlayOneShot(menuSound, 0.7F);
+            sfx.PlayConfirm();
             Application.LoadLevel("mainMenu");
         }
  	
@@ -174,6 +175,7 @@ public class GameState : MonoBehaviour {
             timePaused = false;
             Time.timeScale = 1;
             //audio.PlayOneShot(menuSound, 0.7F);
+            sfx.PlayConfirm();
             // On Click, restart the game
             Application.LoadLevel(Application.loadedLevel);
         } else if ( GUI.Button(
@@ -188,6 +190,7 @@ public class GameState : MonoBehaviour {
             timePaused = false;
             Time.timeScale = 1;
             //audio.PlayOneShot(menuSound, 0.7F);
+            sfx.PlayConfirm();
             Application.LoadLevel("MainMenu");
             
         }
