@@ -2,7 +2,36 @@ fileFormatVersion: 2
 guid: c80b3ac6f4ddfc74a8d0fa81d964dfbe
 ModelImporter:
   serializedVersion: 16
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Base
+    100002: //RootNode
+    100004: Chainguard_thing
+    100006: Cockpit
+    100008: Wheel_Back
+    100010: Wheel_front
+    400000: Base
+    400002: //RootNode
+    400004: Chainguard_thing
+    400006: Cockpit
+    400008: Wheel_Back
+    400010: Wheel_front
+    2300000: Base
+    2300002: Chainguard_thing
+    2300004: Cockpit
+    2300006: Wheel_Back
+    2300008: Wheel_front
+    3300000: Base
+    3300002: Chainguard_thing
+    3300004: Cockpit
+    3300006: Wheel_Back
+    3300008: Wheel_front
+    4300000: Cockpit
+    4300002: Wheel_front
+    4300004: Wheel_Back
+    4300006: Chainguard_thing
+    4300008: Base
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
