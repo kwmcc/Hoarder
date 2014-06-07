@@ -13,13 +13,13 @@
 //
 var playerObject : GameObject; //player
 var patrolPause : float; //how long the NPC will wait when it reaches a waypoint
-//var persuitModivation : float; //this is the amount of time that the NPC will chase the player.
 var persuitRange: float; //how far away before the NPC will give up the search
 var persuitSpeed: float = 4;
 var normalSpeed: float = 2;
 var fovRange : float; //Feild of View Ranger
 var minPlayerDetectDistance : float; //how close can the player get
 var rayRange : float; // distance in front.
+var rayPersuitRange: float; //distance they will spot you from while searching
 private var rayDirection = Vector3.zero;
 private var timer : float = 0;
 private var playerSpotted : boolean = false;
@@ -127,21 +127,8 @@ function patrolWaypoints () {
 //Will follow the player by moving to their position.
 //
 function chasePlayer() {
-	//commented out reset so it will continue its previous path
-	//agent.ResetPath();
-	//var lastLocation;
-	
-	agent.SetDestination(playerObject.transform.position);
-	
-	//if the player goes out of sight then the NPC will move to the players last known location.
-	//if(CanSeePlayer() == false)
-	//{
-	//	Debug.Log("Out of Sight, moving to last location");
-	//	lastLocation = playerObject.transform.position;
-	//	agent.SetDestination(lastLocation);	
-	//}
-	//Debug.Log("Reseting path, moving to player");
 
+	agent.SetDestination(playerObject.transform.position);
 
 }
 
@@ -173,20 +160,38 @@ function CanSeePlayer() : boolean
 		}	
 		
 	}
-	
-	//for the specified FOV of the NPC
-	if((Vector3.Angle(rayDirection, transform.forward)) < fovRange)
+	//if the robot is in persuit
+	if(!playerSpotted)
 	{
-		if(Physics.Raycast(transform.position, rayDirection, hit, rayRange))
+		//for the specified FOV of the NPC
+		if((Vector3.Angle(rayDirection, transform.forward)) < fovRange)
 		{
-			if(hit.transform.tag == "Player")
+			if(Physics.Raycast(transform.position, rayDirection, hit, rayRange))
 			{
-				Debug.Log("Player Spotted!");
-				return true;
-			}else{
-				return false;
+				if(hit.transform.tag == "Player")
+				{
+					Debug.Log("Player Spotted!");
+					return true;
+				}else{
+					return false;
+				}
 			}
-		}
+		}	
+	}else{
+		//for the specified FOV of the NPC
+		if((Vector3.Angle(rayDirection, transform.forward)) < fovRange)
+		{
+			if(Physics.Raycast(transform.position, rayDirection, hit, rayPersuitRange))
+			{
+				if(hit.transform.tag == "Player")
+				{
+					Debug.Log("Player Spotted at long range!");
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}	
 	}
 	//if nothing is found
 	return false;
