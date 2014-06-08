@@ -33,7 +33,6 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400012}
-  - 114: {fileID: 11400014}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400016}
@@ -92,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -6.2219305, y: 1.7224102, z: -10.9717846}
+  m_LocalPosition: {x: -6.2219305, y: 1.6077714, z: -10.9717846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -108,7 +107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .907083511, z: -.212486267}
+  m_LocalPosition: {x: 3.3413091e-08, y: .907083511, z: -.382201195}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -252,15 +251,15 @@ MonoBehaviour:
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
-      - time: -90
-        value: 1
+      - time: -88.5
+        value: .912500024
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
+      - time: -3
+        value: .900000036
+        inSlope: -.000900895742
+        outSlope: -.000900895742
         tangentMode: 0
       - time: 90
         value: 0
@@ -271,12 +270,12 @@ MonoBehaviour:
       m_PostInfinity: 2
     maxGroundAcceleration: 20
     maxAirAcceleration: 15
-    gravity: 20
+    gravity: 35
     maxFallSpeed: 20
   jumping:
     enabled: 1
     baseHeight: 1
-    extraHeight: 1
+    extraHeight: .5
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
@@ -364,7 +363,7 @@ MonoBehaviour:
   distance: 0
   throwForce: 500
   throwRange: 1000
-  attachToCenterOfMass: 1
+  attachToCenterOfMass: 0
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,17 +376,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushPower: .5
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88ca97e4c6da1ea43b79cde101c3abfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
