@@ -69,6 +69,7 @@ function OnGUI()
 		{
 			// On Click, load the first level.
 			// "Stage1" is the name of the first scene we created.
+			Screen.lockCursor = true;
             sfxObject.GetComponent(SFXManager).PlayConfirm();
 			Application.LoadLevel(loadLevel[i]);
 		}

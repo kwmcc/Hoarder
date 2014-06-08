@@ -35,7 +35,7 @@ public class MouseLook : MonoBehaviour {
 	public Texture2D crosshairTextureGreen;
 	public float crosshairScale = 1;
     
-    private bool mouseLocked = false;
+    //private bool mouseLocked = false;
     private Valuable _hoverObjectValuable;
     private GameObject _lastHoverObject;
 
