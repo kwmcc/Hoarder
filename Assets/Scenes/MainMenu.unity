@@ -205,6 +205,47 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   sfxObject: {fileID: 0}
+--- !u!1 &941095244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 941095246}
+  - 114: {fileID: 941095245}
+  m_Layer: 0
+  m_Name: KongregateAPI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &941095245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941095244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e1add894f87e24da585a35b597cfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isKongregate: 0
+  userId: 0
+  gameAuthToken: 
+--- !u!4 &941095246
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941095244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -5.43614674}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1764329292
 GameObject:
   m_ObjectHideFlags: 0

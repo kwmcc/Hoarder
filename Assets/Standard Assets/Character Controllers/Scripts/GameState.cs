@@ -97,7 +97,8 @@ public class GameState : MonoBehaviour {
                 
             // Input to open pause menu
             if (Input.GetKeyDown(KeyCode.Escape) && Application.loadedLevelName != "mainMenu") {
-                togglePause();
+				Screen.lockCursor = false;
+				togglePause();
             }
         }else{
             gameTime = 0.0f;
@@ -125,6 +126,7 @@ public class GameState : MonoBehaviour {
             // On Click, resume the game
             //audio.PlayOneShot(menuSound, 0.7F);
             sfx.PlayConfirm();
+			Screen.lockCursor = true;
             togglePause();
         } else if ( GUI.Button(
             // Center in X, 2/3 of the height in Y
@@ -145,6 +147,7 @@ public class GameState : MonoBehaviour {
     }
     public void endMenu(){
         string gameOverText = _caught? "You've been caught!": "Time's Up!";
+		Application.ExternalCall("kongregate.stats.submit","Value",_hoardLair.getTotal());
 
 		GUI.DrawTexture(new Rect(0, 0, 1024, 768), buttonTexture[3] , ScaleMode.ScaleToFit, true, 0);
         
@@ -184,6 +187,7 @@ public class GameState : MonoBehaviour {
             Time.timeScale = 1;
             //audio.PlayOneShot(menuSound, 0.7F);
             sfx.PlayConfirm();
+			Screen.lockCursor = true;
             // On Click, restart the game
             Application.LoadLevel(Application.loadedLevel);
 		
