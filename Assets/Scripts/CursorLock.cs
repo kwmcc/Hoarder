@@ -24,10 +24,6 @@ public class CursorLock : MonoBehaviour {
 	}
 	private bool wasLocked = false;
 
-	void Start() {
-		Screen.lockCursor = true;
-	}
-
 	void Update() {
 		if (Input.GetKeyDown("escape"))
 			Screen.lockCursor = false;
