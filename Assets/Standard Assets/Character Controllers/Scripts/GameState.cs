@@ -13,8 +13,9 @@ public class GameState : MonoBehaviour {
     public GUIStyle scoreStyle;
     public GUIStyle scoreTallyStyle;
     public GUIStyle itemStyle;
-    public float buttonHeight = 60;
-    public float buttonWidth = 84;
+    public float buttonHeight = 128;
+    public float buttonWidth = 256;
+
     
     public bool menuUp = false;
     
@@ -33,6 +34,8 @@ public class GameState : MonoBehaviour {
     private static CharacterController _characterControllor;
     private static HoardLair _hoardLair;
     private Dictionary<string,Valuable> _hoardedItems;
+
+	public Texture[] buttonTexture;
     
     private SFXManager sfx;
     
@@ -117,7 +120,7 @@ public class GameState : MonoBehaviour {
         if (GUI.Button(
             // Center in X, 2/3 of the height in Y
             new Rect(Screen.width / 2 - (buttonWidth / 2) + 200,(2 * Screen.height / 3) - (buttonHeight / 2),buttonWidth,buttonHeight),
-            "Resume", menuStyle))
+            buttonTexture[0], menuStyle))
         {
             // On Click, resume the game
             //audio.PlayOneShot(menuSound, 0.7F);
@@ -126,7 +129,7 @@ public class GameState : MonoBehaviour {
         } else if ( GUI.Button(
             // Center in X, 2/3 of the height in Y
             new Rect(Screen.width / 2 - (buttonWidth / 2) + - 200,(2 * Screen.height / 3) - (buttonHeight / 2),buttonWidth,buttonHeight),
-            "Main Menu", menuStyle))
+            buttonTexture[1], menuStyle))
         {
             // On Click, load the main menu.
             pauseGame = false;
@@ -142,16 +145,20 @@ public class GameState : MonoBehaviour {
     }
     public void endMenu(){
         string gameOverText = _caught? "You've been caught!": "Time's Up!";
+
+		GUI.DrawTexture(new Rect(0, 0, 1024, 768), buttonTexture[3] , ScaleMode.ScaleToFit, true, 0);
         
+		//GUI.Label(
+            // Center in X, 2/3 of the height in Y
+        //    new Rect(Screen.width / 2,(Screen.height - 7 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
+		//	' ', scoreTallyStyle);
         GUI.Label(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2,(Screen.height - 7 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
-            gameOverText, scoreTallyStyle);
-        GUI.Label(
-            // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            new Rect((Screen.width / 2)- 100,(Screen.height - 4 * (Screen.height / 8) ) - (buttonHeight / 2),buttonWidth,buttonHeight),
             "Hoard Value: $ " + string.Format("{0:#,###0}", _hoardLair.getTotal()), scoreTallyStyle);
             
+
+
         int index = 1;
         foreach ( string key in _hoardedItems.Keys) {
           //var item = dictionary.ElementAt(index);
@@ -159,15 +166,16 @@ public class GameState : MonoBehaviour {
           Valuable item = _hoardedItems[key];
           GUI.Label(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width - Screen.width / 2,(Screen.height - 4 * (Screen.height / 8) + 50 * index) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            new Rect((Screen.width - Screen.width / 2)-100,(Screen.height - 4 * (Screen.height / 8) + 50 * index) - (buttonHeight / 2),buttonWidth,buttonHeight),
             item.getName() +" - $ " + string.Format("{0:#,###0}",  item.getValue()), itemStyle);
           index++;
         }
-        
+
+        //restart
         if (GUI.Button(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2 - (buttonWidth / 2) + 200, Screen.height - 6 * (Screen.height / 8) - (buttonHeight / 2),buttonWidth,buttonHeight),
-            "Try Again", menuStyle))
+            new Rect(Screen.width / 2 - (buttonWidth / 2) + 200, Screen.height - 5 * (Screen.height / 8) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            buttonTexture[2], menuStyle))
         {
             pauseGame = false;
             gameOver = false;
@@ -178,10 +186,12 @@ public class GameState : MonoBehaviour {
             sfx.PlayConfirm();
             // On Click, restart the game
             Application.LoadLevel(Application.loadedLevel);
+		
+			//Main Menu
         } else if ( GUI.Button(
             // Center in X, 2/3 of the height in Y
-            new Rect(Screen.width / 2 - (buttonWidth / 2) + - 200,Screen.height - 6 * (Screen.height / 8) - (buttonHeight / 2),buttonWidth,buttonHeight),
-            "Main Menu", menuStyle))
+            new Rect(Screen.width / 2 - (buttonWidth / 2) + - 200,Screen.height - 5 * (Screen.height / 8) - (buttonHeight / 2),buttonWidth,buttonHeight),
+            buttonTexture[1], menuStyle))
         {
             // On Click, load the main menu.
             pauseGame = false;
