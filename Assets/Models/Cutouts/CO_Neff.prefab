@@ -28,8 +28,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: -1.72227287, y: 1.59130418, z: -22.7006264}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.29866695, y: 1.59130418, z: -24.9623165}
+  m_LocalScale: {x: .865857899, y: .865857899, z: .865857899}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9084b0631220e40a6d6ab6391e7346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _valuableName: Neff_Cutout
+  _valuableName: Neff Cutout
   _value: 100
   tooltipStyle:
     m_Name: 

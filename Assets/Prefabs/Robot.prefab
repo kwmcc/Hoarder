@@ -1019,8 +1019,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100100}
-  m_LocalRotation: {x: 0, y: -.707109272, z: 0, w: -.707104325}
-  m_LocalPosition: {x: -38.5560303, y: 1.54224634, z: -24.2882099}
+  m_LocalRotation: {x: 0, y: -.868231714, z: 0, w: .496158987}
+  m_LocalPosition: {x: -9.66629505, y: -.705827236, z: -32.4800758}
   m_LocalScale: {x: 1.29999995, y: 1.29999995, z: 1.29999995}
   m_Children:
   - {fileID: 400028}
@@ -1390,9 +1390,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100100}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: .300000012
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1420,8 +1420,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .5, y: 2, z: .5}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 1.79999995, z: .389999986}
+  m_Center: {x: 0, y: .899999976, z: 0}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -1448,14 +1448,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 0}
-  patrolPause: 3
-  persuitRange: 12
-  persuitSpeed: 4
-  normalSpeed: 2
+  patrolPause: 1
+  persuitRange: 30
+  persuitSpeed: 5
+  normalSpeed: 3
   fovRange: 120
   minPlayerDetectDistance: 2
-  rayRange: 15
-  rayPersuitRange: 0
+  rayRange: 20
+  rayPersuitRange: 100
   anim: {fileID: 0}
   waypoints:
   - {fileID: 0}

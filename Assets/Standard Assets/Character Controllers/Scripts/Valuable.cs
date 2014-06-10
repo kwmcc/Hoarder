@@ -16,7 +16,7 @@ public class Valuable : MonoBehaviour {
         tooltipStyle.font = (Font)Resources.Load("Font/cityburn");
         tooltipStyle.fontSize = 36;
         tooltipStyle.alignment = TextAnchor.MiddleCenter;
-        tooltipStyle.normal.textColor = Color.black;
+        tooltipStyle.normal.textColor = Color.yellow;
     }
     
     public void OnGUI(){
@@ -43,7 +43,7 @@ public class Valuable : MonoBehaviour {
             //Shader glowOutline = Shader.Find ("ObjectGlow");
             Shader glowOutline = Shader.Find ("GlowOutline");
             gameObject.renderer.material.shader = glowOutline;
-            gameObject.renderer.material.SetColor ("_RimColor", new Color (0f, 1f, 1f, 1f));
+            gameObject.renderer.material.SetColor ("_RimColor", new Color (1f, 1f, 1f, 1f));
             //gameObject.renderer.material.SetColor ("_RimColor", Color.green);
             gameObject.renderer.material.SetFloat ("_RimPower", 1.0f);
             _hover = true;
