@@ -42,8 +42,8 @@ public class Valuable : MonoBehaviour {
         if (value && !_grabbed && !GameState._sInstance.menuUp) {
             //Shader glowOutline = Shader.Find ("ObjectGlow");
             Shader glowOutline = Shader.Find ("GlowOutline");
-            gameObject.renderer.material.shader = glowOutline;
-            gameObject.renderer.material.SetColor ("_RimColor", new Color (1f, 1f, 1f, 1f));
+           // gameObject.renderer.material.shader = glowOutline;
+            gameObject.renderer.material.SetColor ("_RimColor", new Color (1f, 1f, 1f, 0f));
             //gameObject.renderer.material.SetColor ("_RimColor", Color.green);
             gameObject.renderer.material.SetFloat ("_RimPower", 1.0f);
             _hover = true;
