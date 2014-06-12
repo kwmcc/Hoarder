@@ -1,0 +1,111 @@
+fileFormatVersion: 2
+guid: 0cff30dcaae516f40aef44131218b86b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Ambient_Cloner Plane_0
+    100002: Ambient_Cloner Plane_1
+    100004: Ambient_Cloner Plane_2
+    100006: Ambient_Cloner Plane_3
+    100008: Ambient_Cloner Plane_4
+    100010: Ambient_Cloner Plane_5
+    100012: Ambient_Cloner Plane_6
+    100014: Ambient_Cloner Plane_7
+    100016: Ambient_Cloner Plane_8
+    100018: basket_ball
+    100020: //RootNode
+    400000: Ambient_Cloner Plane_0
+    400002: Ambient_Cloner Plane_1
+    400004: Ambient_Cloner Plane_2
+    400006: Ambient_Cloner Plane_3
+    400008: Ambient_Cloner Plane_4
+    400010: Ambient_Cloner Plane_5
+    400012: Ambient_Cloner Plane_6
+    400014: Ambient_Cloner Plane_7
+    400016: Ambient_Cloner Plane_8
+    400018: basket_ball
+    400020: //RootNode
+    2300000: Ambient_Cloner Plane_0
+    2300002: Ambient_Cloner Plane_1
+    2300004: Ambient_Cloner Plane_2
+    2300006: Ambient_Cloner Plane_3
+    2300008: Ambient_Cloner Plane_4
+    2300010: Ambient_Cloner Plane_5
+    2300012: Ambient_Cloner Plane_6
+    2300014: Ambient_Cloner Plane_7
+    2300016: Ambient_Cloner Plane_8
+    2300018: basket_ball
+    3300000: Ambient_Cloner Plane_0
+    3300002: Ambient_Cloner Plane_1
+    3300004: Ambient_Cloner Plane_2
+    3300006: Ambient_Cloner Plane_3
+    3300008: Ambient_Cloner Plane_4
+    3300010: Ambient_Cloner Plane_5
+    3300012: Ambient_Cloner Plane_6
+    3300014: Ambient_Cloner Plane_7
+    3300016: Ambient_Cloner Plane_8
+    3300018: basket_ball
+    4300000: Ambient_Cloner Plane_0
+    4300002: Ambient_Cloner Plane_1
+    4300004: Ambient_Cloner Plane_2
+    4300006: Ambient_Cloner Plane_3
+    4300008: Ambient_Cloner Plane_4
+    4300010: Ambient_Cloner Plane_5
+    4300012: Ambient_Cloner Plane_6
+    4300014: Ambient_Cloner Plane_7
+    4300016: Ambient_Cloner Plane_8
+    4300018: basket_ball
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
