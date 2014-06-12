@@ -179,6 +179,7 @@ GameObject:
   - 65: {fileID: 6500002}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
+  - 23: {fileID: 2300000}
   m_Layer: 0
   m_Name: Bicycle
   m_TagString: Untagged
@@ -320,15 +321,36 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.7299347, y: .00632894412, z: -7.8698101}
-  m_LocalScale: {x: 1.75547206, y: 1.75547206, z: 1.75547206}
+  m_LocalRotation: {x: .71026516, y: -.00857203547, z: -.0911086574, w: .697960794}
+  m_LocalPosition: {x: 10.760375, y: 4.77194786, z: .292521834}
+  m_LocalScale: {x: 1.75547206, y: 1.75547183, z: 1.75547206}
   m_Children:
   - {fileID: 400020}
   - {fileID: 400018}
   - {fileID: 400016}
   - {fileID: 400014}
   m_Father: {fileID: 0}
+--- !u!23 &2300000
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
