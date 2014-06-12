@@ -14485,6 +14485,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .987211168
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5f06f3175988a4e4cba7d2f3d246759c, type: 2}
+      propertyPath: _value
+      value: 9001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f06f3175988a4e4cba7d2f3d246759c, type: 2}
   m_RootGameObject: {fileID: 509984804}
@@ -26229,7 +26233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _valuableName: Wessman_Cutout
-  _value: 100
+  _value: 9001
   tooltipStyle:
     m_Name: 
     m_Normal:
